@@ -1,0 +1,9 @@
+%% -*- erlang -*-
+{application, mixi_staging,
+ [{description, "mixi_staging"},
+  {vsn, "0.1"},
+  {modules, []},
+  {registered, []},
+  {mod, {'mixi_staging_app', []}},
+  {env, []},
+  {applications, [kernel, stdlib, crypto]}]}.

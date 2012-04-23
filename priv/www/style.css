@@ -1,0 +1,212 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    font-family: helvetica,arial,sans-serif;
+    font-size: 14px;
+    background-color: white;
+}
+
+div.appLayout {
+    height: 100%;
+}
+
+br.clear {
+    clear: both;
+}
+
+div.title {
+    float: left;
+    font-size: 16px;
+    font-family: "cursive",cursive;
+}
+
+div.title img {
+    width: 28px;
+    height: 27px;
+}
+
+#progress {
+    float: right;
+    visibility: hidden;
+}
+
+div.headerPanel {
+    width: 100%;
+}
+
+#errorMessage {
+    color: red;
+    font-size: 14px;
+    float: right;
+    margin-right: 10px;
+}
+
+div.adminServersPane {
+    border-top: 1px solid lightgray;
+    margin-top: 10px;
+    padding-top: 5px;
+    width: 100%;
+}
+
+#adminServers {
+    font-size: 12px;
+    text-align: right;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#loginErrorMessage {
+    color: red;
+    font-size: 12px;
+}
+
+div #userInfo {
+    float: left;
+    margin-left: 10px;
+}
+
+#logout {
+    display: inline-block;
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
+#leftCol {
+    width: 230px;
+    overflow: auto;
+}
+
+#categories {
+    font-size: 14px;
+}
+
+div.category {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+#categoryName {
+    font-size: 15px;
+}
+
+div.copyright {
+    font-size: 10px;
+    float: right;
+}
+
+#reservationForm {
+    border-top: 1px solid gray;
+    padding-top: 5px;
+}
+
+#reservationForm table td {
+    font-size: 14px;
+}
+
+div.reserveSpan {
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+div.inputFormPane {
+    margin-bottom: 3px;
+}
+
+#serverPane {
+    display: none;
+}
+
+#bookingsTable {
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+#bookingsTable table {
+    font-size: 14px;
+    border: 1px solid lightgray;
+    padding: 0;
+    width: 100%;
+}
+
+#bookingsTable table th {
+    border: 1px solid lightgray;
+    font-weight: normal;
+}
+
+#bookingsTable table td {
+    border: 1px solid lightgray;
+    padding: 2px;
+}
+
+#no_any_bookings {
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+div.deleteLink {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
+td.deleteLinkTd {
+    text-align: center;
+}
+
+#confirmMessage {
+    margin-bottom: 5px;
+}
+
+#registerNewUser {
+    font-size: 12px;
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
+#registerNewUserErrorMessage {
+    color: red;
+    font-size: 12px;
+}
+
+div.adminServersDialogSize {
+    width: 640px;
+    height: 400px;
+}
+
+div.adminServersTable{
+    height: 100%;
+    overflow: auto;
+}
+
+div.adminServersTable table {
+    font-size: 14px;
+    border: 1px solid lightgray;
+    padding: 0;
+    width: 100%;
+}
+
+div.adminServersTable table th {
+    border: 1px solid lightgray;
+    font-weight: normal;
+}
+
+div.adminServersTable table td {
+    border: 1px solid lightgray;
+    padding: 2px;
+}
+
+div.adminAddServerPane {
+    margin-bottom: 5px;
+    margin-left: 5px;
+}

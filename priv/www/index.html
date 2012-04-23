@@ -1,0 +1,251 @@
+<html>
+
+<head>
+  <title>mixi Staging reservation system</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet"
+        href="http://ajax.googleapis.com/ajax/libs/dojo/1.6/dijit/themes/claro/claro.css" media="screen" />
+  <style type="text/css">
+    @import "http://ajax.googleapis.com/ajax/libs/dojo/1.6/dojox/grid/resources/Grid.css";
+    @import "http://ajax.googleapis.com/ajax/libs/dojo/1.6/dojox/grid/resources/claroGrid.css";
+  </style>
+  <link rel="stylesheet" href="style.css" media="screen" />
+  <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.ico" />
+  <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.6.1/dojo/dojo.xd.js"
+          data-dojo-config="isDebug: true, parseOnLoad: true"></script>
+  <script type="text/javascript" src="imports.js"></script>
+  <script type="text/javascript" src="bootloader.js"></script>
+  <script type="text/javascript" src="login_pane.js"></script>
+  <script type="text/javascript" src="category_pane.js"></script>
+  <script type="text/javascript" src="server_pane.js"></script>
+  <script type="text/javascript" src="confirm_dialog.js"></script>
+  <script type="text/javascript" src="register_new_user_dialog.js"></script>
+  <script type="text/javascript" src="admin_servers_dialog.js"></script>
+  <script type="text/javascript" src="utils.js"></script>
+</head>
+
+<body class="claro">
+
+  <div class="appLayout" id="mainAppLayout"
+       data-dojo-type="dijit.layout.BorderContainer"
+       data-dojo-props="region: 'headline'">
+
+    <div class="edgePanel"
+         data-dojo-type="dijit.layout.ContentPane"
+         data-dojo-props="region: 'top'">
+      <div class="headerPanel">
+        <div class="title">
+          <img src="images/m_balloon_icon.jpg" align="center" />
+          mixi Staging server reservation system
+        </div>
+        <div id="progress">
+          <img src="progress.gif" />
+        </div>
+        <div id="errorMessage"></div>
+      </div>
+    </div>
+
+    <div id="leftCol" class="edgePanel"
+         data-dojo-type="dijit.layout.ContentPane"
+         data-dojo-props="region: 'left', splitter: true">
+      <div id="categories">
+      </div>
+      <div class="adminServersPane">
+        <div id="adminServers">サーバ管理</div>
+      </div>
+    </div>
+
+    <div class="centerPanel"
+         data-dojo-type="dijit.layout.ContentPane"
+         data-dojo-props="region: 'center'">
+      <div id="serverPane">
+        <div id="serversTitle">
+          <div id="categoryName"></div>
+        </div>
+
+        <div id="bookingsTable">
+          <table>
+            <thead>
+              <tr>
+                <th>サーバ名</th>
+                <th>ブランチ名</th>
+                <th>開始日</th>
+                <th>終了日</th>
+                <th>利用者</th>
+                <th>用途</th>
+                <th>予約取り消し</th>
+              </tr>
+            </thead>
+            <tbody id="bookings">
+            </tbody>
+          </table>
+        </div>
+
+        <div id="no_any_bookings">
+          今日以降に予約されているサーバはありません。
+        </div>
+
+        <div id="reservationForm">
+          <table>
+            <tr>
+              <td>
+                  期間：
+              </td>
+              <td>
+                <div class="reserveSpan">
+                  <input id="fromDate" />
+                  ～
+                  <input id="toDate" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                ブランチ：
+              </td>
+              <td>
+                <div class="inputFormPane">
+                  <input id="branch" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                用途：
+              </td>
+              <td>
+                <div class="inputFormPane">
+                  <input id="purpose" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <button id="reserveButton"></button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="edgePanel"
+         data-dojo-type="dijit.layout.ContentPane"
+         data-dojo-props="region: 'bottom'">
+      <div id="userInfo">
+        "<span id="userName"></span>"さんでログインしています
+        (<div id="logout">ログアウト</div>)
+      </div>
+      <div class="copyright">Copyright (C) 2012 Yoichiro Tanaka, All rights reserved.</div>
+    </div>
+
+  </div>
+
+  <div id="loginDialog">
+    <table>
+      <tr>
+        <td><label for="email">Email:</label></td>
+        <td><input type="text" id="email" /></td>
+      </tr>
+      <tr>
+        <td><label for="password">Password:</label></td>
+        <td><input type="text" id="password" /></td>
+      </tr>
+      <tr>
+        <td align="center" colspan="2">
+          <button id="loginButton"></button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div id="loginErrorMessage"></div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="right">
+          <div id="registerNewUser">新規ユーザ登録はこちら</div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div id="confirmDialog">
+    <div id="confirmMessage"></div>
+    <div class="confirmButtons">
+      <button id="confirmOkButton"></button>
+      <button id="confirmCancelButton"></button>
+    </div>
+  </div>
+
+  <div id="registerNewUserDialog">
+    <table>
+      <tr>
+        <td><label for="newEmail">Email:</label></td>
+        <td><input type="text" id="newEmail" /></td>
+      </tr>
+      <tr>
+        <td><label for="newPassword1">Password:</label></td>
+        <td><input type="text" id="newPassword1" /></td>
+      </tr>
+      <tr>
+        <td><br /></td>
+        <td><input type="text" id="newPassword2" /></td>
+      </tr>
+      <tr>
+        <td><label for="newName">Name:</label></td>
+        <td><input type="text" id="newName" /></td>
+      </tr>
+      <tr>
+        <td><label for="newIrc">IRC:</label></td>
+        <td><input type="text" id="newIrc" /></td>
+      </tr>
+      <tr>
+        <td align="center" colspan="2">
+          <button id="registerNewUserButton"></button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div id="registerNewUserErrorMessage"></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div id="adminServersDialog"
+       data-dojo-type="dijit.Dialog"
+       data-dojo-props="title: 'サーバ管理', draggable: false">
+    <div class="adminServersDialogSize">
+      <div class="appLayout" id="adminServersContainer"
+           data-dojo-type="dijit.layout.BorderContainer"
+           data-dojo-props="region: 'headline'">
+        <div class="edgePanel"
+             data-dojo-type="dijit.layout.ContentPane"
+             data-dojo-props="region: 'top'">
+          <select id="adminCategories">
+          </select>
+          <button id="deleteCategoryButton"></button>
+          <input id="newCategory" />
+          <button id="addCategoryButton"></button>
+        </div>
+        <div class="centerPanel"
+             data-dojo-type="dijit.layout.ContentPane"
+             data-dojo-props="region: 'center'">
+          <div class="adminServersTable">
+            <div class="adminAddServerPane">
+              <input id="newServer" />
+              <button id="addServerButton"></button>
+            </div>
+            <table>
+              <tbody id="adminServersTable">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

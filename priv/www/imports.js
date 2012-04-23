@@ -1,0 +1,12 @@
+dojo.require("dijit.layout.BorderContainer");
+dojo.require("dijit.layout.ContentPane");
+dojo.require("dijit.dijit");
+dojo.require("dijit.Dialog");
+dojo.require("dijit.form.TextBox");
+dojo.require("dijit.form.ValidationTextBox");
+dojo.require("dijit.form.Button");
+dojo.require("dijit.form.DateTextBox");
+dojo.require("dojo.date.locale");
+dojo.require("dojox.validate.web");
+dojo.require("dijit.form.Select");
+dojo.require("dijit.Tooltip");
